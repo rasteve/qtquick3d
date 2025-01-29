@@ -6,7 +6,7 @@ project(stenciloutline3d LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Quick Quick3D)
+find_package(Qt6 REQUIRED COMPONENTS Core GuiPrivate Quick Quick3DPrivate)
 
 qt_add_executable(stenciloutline3d
     main.cpp

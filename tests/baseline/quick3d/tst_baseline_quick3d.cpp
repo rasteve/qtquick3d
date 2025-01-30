@@ -218,7 +218,11 @@ quint16 tst_Quick3D::checksumFileOrDir(const QString &path)
     if (fi.isFile()) {
         QFile f(path);
         bool isBinary = path.endsWith(".png") || path.endsWith(".jpg");
-        f.open(isBinary ? QIODevice::ReadOnly : QIODevice::ReadOnly | QIODevice::Text);
+        if (!f.open(isBinary ? QIODevice::ReadOnly : QIODevice::ReadOnly | QIODevice::Text)) {
+            qCritical() << "Failed to open file" << path << f.errorString();
+            return 0;
+        }
+
         QByteArray contents = f.readAll();
         return qChecksum(contents);
     }
